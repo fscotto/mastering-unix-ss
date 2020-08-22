@@ -32,7 +32,7 @@ typeset -i MB_SIZE=$1
 typeset -i RN
 typeset -i i=1
 typeset -i X=0
-WORKDIR=/scripts
+WORKDIR=./scripts
 OUTFILE=${WORKDIR}/largefile.random.txt
 >$OUTFILE
 THIS_SCRIPT=$(basename $0)
@@ -42,7 +42,7 @@ CHAR_FILE=${WORKDIR}/char_file.txt
 # DEFINE FUNCTIONS HERE
 ##########################################
 
-build_random_line ()
+function build_random_line
 {
 # This function extracts random characters
 # from the KEYS array by using the RANDOM
@@ -50,7 +50,7 @@ build_random_line ()
 
 C=1
 LINE=
-until (( C > 79 ))
+until [[ C > 79 ]]
 do
    LINE="${LINE}${KEYS[$(($RANDOM % X + 1))]}"
    (( C = C + 1 ))
